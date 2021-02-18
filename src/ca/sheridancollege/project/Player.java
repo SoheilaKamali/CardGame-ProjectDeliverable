@@ -2,6 +2,7 @@
  * SYST 17796 Project Winter 2021 Base code.
  * Students can modify and extend to implement their game.
  * Add your name as a modifier and the date!
+ * hello
  */
 package ca.sheridancollege.project;
 
@@ -19,7 +20,7 @@ public abstract class Player
      */
     public Player(String name)
     {
-        playerID= name;
+        playerID = name;
     }
     
     /**

@@ -2,6 +2,7 @@
  * SYST 17796 Project Winter 2021 Base code.
  * Students can modify and extend to implement their game.
  * Add your name as a modifier and the date!
+ * Omar's file
  */
 package ca.sheridancollege.project;
 

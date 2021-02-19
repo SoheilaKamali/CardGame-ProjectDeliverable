@@ -36,6 +36,7 @@ public abstract class Game
      */
     public ArrayList <Player> getPlayers() 
     {
+        // testing this right now so i know whats happening
         return players;
     }
 

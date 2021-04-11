@@ -2,14 +2,12 @@ package ca.sheridancollege.project;
 
 public class Game {
     private static Game onlyGame = null;
-    public ComputerPlayer computerPlayer;
-    public HumanPlayer player1;
+    private ComputerPlayer computerPlayer;
+    private HumanPlayer player1;
     private Deck deck;
-    private Points points;
 
     private Game() {
         deck = new Deck();
-        points = new Points();
     }
 
     public static Game getInstance(){
@@ -20,7 +18,7 @@ public class Game {
     }
 
     public void play() {
-        while (points.getPoints() != 13) {
+        while ((player1.getPoints() + computerPlayer.getPoints()) != 13) {
             player1.play();
             computerPlayer.play();
         }
@@ -34,23 +32,27 @@ public class Game {
         return deck.getCards();
     }
 
-    public void requestCard(Card card, Player opponent) {
-        try{
-            opponent.playerHand.removeCard(card);
-        }catch (Exception e){
-            if(opponent.getPlayerID().equals("computer")){
-                player1.playerHand.drawCard();
-            }else {
-                computerPlayer.playerHand.drawCard();
+
+    public boolean requestCard(Card card, Player requester) {
+        Player opponent = null;
+        if (requester != computerPlayer){
+            opponent = computerPlayer;
+        }else{
+            opponent = player1;
+        }
+            if(opponent.playerHand.checkCard(card)){
+                requester.playerHand.addCards(opponent.playerHand.extractCard(card.rank));
+                return true;
+            }else{
+                return false;
             }
-    }
     }
 
     public Player checkWinner() {
-        if (points.getPlayerPoints() > points.getComputerPoints()) {
+        if (player1.getPoints() > computerPlayer.getPoints()) {
             return player1;
         }
         return computerPlayer;
     }
-
 }
+

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PlayerHand{
 
     private ArrayList<Card> cards;
-    public String playerName;
+    private String playerName;
 
     public PlayerHand(Deck deck, String name) {
         cards = new ArrayList<>();
@@ -21,20 +21,34 @@ public class PlayerHand{
         cards.add(card);
     }
 
-    public void removeCard(Card card){
-        cards.remove(card);
+    public void addCards(ArrayList<Card> card){
+        cards.addAll(card);
     }
+
+    public ArrayList<Card> extractCard(Ranks card){
+        ArrayList<Card> cardsFound = new ArrayList<>();
+        for (Card i : cards){
+            if(i.rank.equals(card)){
+                cardsFound.add(i);
+            }
+        }
+        cards.removeAll(cardsFound);
+        return cardsFound;
+    }
+
     public void drawCard(){
         cards.add(Game.getInstance().drawCard());
     }
 
-    public boolean checkCard(Ranks card){
-        for(Card i : cards){
-            if(i.rank.equals(card)){
-                return true;
-            }
-        }
-        return false;
+    public boolean checkCard(Card card){
+        return cards.contains(card);
+    }
+    public Card getCard(int index){
+       return cards.get(index);
+    }
+
+    public int getHandSize(){
+        return cards.size();
     }
 
     public String display(){
@@ -47,10 +61,14 @@ public class PlayerHand{
         return cards;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
     public boolean checkBook(Card card) {
         int counter = 0;
         for(Card i : cards){
-            if (i.rank.equals(card.rank)){
+            if (i.equals(card)){
                 counter++;
             }
         }

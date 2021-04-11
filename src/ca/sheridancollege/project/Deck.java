@@ -18,7 +18,7 @@ public class Deck{
         for (Suits s : Suits.values()) {
             for (Ranks r : Ranks.values()) {
                 cards.add(i, new Card(s, r));
-                        // increment i here
+                // increment i here
                 // System.out.println(cards.get(i));
                 i++;
             }
@@ -35,8 +35,16 @@ public class Deck{
             card.add(cards.get(0));
             cards.remove(0);
         }
-        return cards;
+        return card;
     }
+
+    public Card getCards() {
+        Card card;
+        card = (cards.get(0));
+        cards.remove(0);
+        return card;
+    }
+
 
     @Override
     public String toString() {

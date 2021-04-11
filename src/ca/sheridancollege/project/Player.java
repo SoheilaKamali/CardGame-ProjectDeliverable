@@ -5,7 +5,6 @@
  * hello
  */
 package ca.sheridancollege.project;
-
 /**
  * A class that models each Player in the game. Players have an identifier, which should be unique.
  * @author dancye
@@ -22,7 +21,7 @@ public abstract class Player
     public Player(String name, Deck deck)
     {
         playerID = name;
-        playerHand = new PlayerHand(deck);
+        playerHand = new PlayerHand(deck, playerID);
     }
 
     /**
@@ -41,6 +40,7 @@ public abstract class Player
     {
         playerID = givenID;
     }
+
 
     /**
      * The method to be instantiated when you subclass the Player class

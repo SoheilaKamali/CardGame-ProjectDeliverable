@@ -14,8 +14,5 @@ public class GoFish {
         game.initialize(in.nextLine());
         game.play();
         System.out.println(game.checkWinner().getPlayerID() + " is the WINNER. HOORAY!!");
-
     }
-
-
 }

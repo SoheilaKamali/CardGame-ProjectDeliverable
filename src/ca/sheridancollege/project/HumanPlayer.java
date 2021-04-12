@@ -21,27 +21,42 @@ public class HumanPlayer extends Player {
         System.out.println("Player: " + getPlayerID() + "\nPoints: " + getPoints() + "\n");
         System.out.println(playerHand.display());
         System.out.print("Please enter The Card you would like to request: ");
+        Card temp;
+
         while(game.requestCard(playerHand.getCard(in.nextInt() - 1), this)) {
             System.out.println("Request Completed you have taken a card from computer request again: "
                     + playerHand.getCard(playerHand.getHandSize() - 1)+ "\n");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ignore) {
+            delay(1000);
+
+            temp = playerHand.getCard(playerHand.getHandSize() - 1);
+
+            if(playerHand.checkBook(temp)){
+                addPoint();
+                playerHand.extractCard(temp.rank);
+                System.out.println("Points Awarded\nNew Points: " + getPoints() + " For " + getPlayerID());
+                System.out.println("for card " + temp.rank.name() + "\n");
             }
+
             System.out.println(playerHand.display());
             System.out.print("Request: ");
 
         }
+
 
         System.out.println("Request Failed Now you will draw a card");
         playerHand.drawCard();
         System.out.println("You have Drawn A card: "
                 + playerHand.getCard(playerHand.getHandSize() - 1) + "\n");
 
-        Card temp = playerHand.getCard(playerHand.getHandSize() - 1);
+        temp = playerHand.getCard(playerHand.getHandSize() - 1);
+
         if(playerHand.checkBook(temp)){
             addPoint();
             playerHand.extractCard(temp.rank);
+            System.out.println("Points Awarded\nNew Points: " + getPoints() + " For " + getPlayerID());
+            System.out.println("for card " + temp.rank.name() + "\n");
         }
+
     }
+
 }

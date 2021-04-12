@@ -7,24 +7,42 @@ public class PlayerHand{
     private ArrayList<Card> cards;
     private String playerName;
 
-    public PlayerHand(Deck deck, String name) {
+    /**
+     * Main Constructor for PlayerHand
+     * @param deck uses the same deck as everyone
+     * @param name used to display the owner of hand
+     * */
+    protected PlayerHand(Deck deck, String name) {
         cards = new ArrayList<>();
         takeCards(7, deck);
         playerName = name;
     }
 
+    /**
+     * takeCards takes a arraylist from deck
+     * @param amount being the amount of cards
+     * @param deck being the deck taken out from
+     * used once for setting up hand
+     * */
     private void takeCards (int amount, Deck deck){
         cards.addAll(deck.getCards(amount));
     }
 
-    public void addCard(Card card){
-        cards.add(card);
-    }
-
+    /**
+     * @param card
+     * takes an arraylist
+     * and adds it to the hands arraylist
+     * */
     public void addCards(ArrayList<Card> card){
         cards.addAll(card);
     }
 
+    /**
+     * @param card is the rank of the card
+     * compares it to the hand
+     * all cards found are removed from hand
+     * @return all the cards found
+     * */
     public ArrayList<Card> extractCard(Ranks card){
         ArrayList<Card> cardsFound = new ArrayList<>();
         for (Card i : cards){
@@ -36,22 +54,42 @@ public class PlayerHand{
         return cardsFound;
     }
 
-    public void drawCard(){
+    /**
+     * draws the card and adds it the hand
+     * */
+    protected void drawCard(){
         cards.add(Game.getInstance().drawCard());
     }
 
+    /**
+     * checks to see if the hand has the card
+     * @param card is the card compared
+     * @return true if hand has card false if not
+     */
     public boolean checkCard(Card card){
         return cards.contains(card);
     }
-    public Card getCard(int index){
+
+    /**
+     * shows the card in that index
+     * @param index is the index of the card
+     * @return the card in the index
+     */
+    protected Card getCard(int index){
        return cards.get(index);
     }
 
+    /**
+     * @return the size of the arraylist cards
+     */
     public int getHandSize(){
         return cards.size();
     }
 
-    public String display(){
+    /**
+     * @return the arraylist in order
+     */
+    protected String display(){
         int counter = 1;
         String cards = "";
         for (Card i : this.cards){
@@ -61,10 +99,11 @@ public class PlayerHand{
         return cards;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
+    /**
+     * checks to see if the player hand has a book
+     * @param card is the card that is being searched
+     * @return returns true if you have 4 of the same card
+     */
     public boolean checkBook(Card card) {
         int counter = 0;
         for(Card i : cards){

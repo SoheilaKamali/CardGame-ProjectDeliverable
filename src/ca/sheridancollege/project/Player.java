@@ -10,8 +10,8 @@ package ca.sheridancollege.project;
  * A class that models each Player in the game. Players have an identifier, which should be unique.
  * @author dancye
  */
-public abstract class Player
-{
+public abstract class Player{
+    
     private String playerID; //the unique ID for this player
     protected PlayerHand playerHand;
     private int playerPoints = 0;
@@ -36,29 +36,31 @@ public abstract class Player
     }
 
     /**
-     * Ensure that the playerID is unique
-     * @param givenID the playerID to set
-     */
-    public void setPlayerID(String givenID)
-    {
-        playerID = givenID;
-    }
-
-    public void addPoint(){
+     * adds a point to the user
+     * using @playerPoints
+     * */
+    protected void addPoint(){
             playerPoints++;
     }
 
+    /**
+     * current points of the player
+     * @return the playerPoints
+     */
     public int getPoints (){
         return playerPoints;
     }
-    
+
+    /**
+     * delay method to slow down the program to make it more
+     * user friendly
+     */
     public void delay(int amount){
         try {
             Thread.sleep(amount);
         } catch (InterruptedException ignore) {
         }
     }
-
 
     /**
      * The method to be instantiated when you subclass the Player class

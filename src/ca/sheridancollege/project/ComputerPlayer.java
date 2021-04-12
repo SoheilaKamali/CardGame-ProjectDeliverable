@@ -4,10 +4,18 @@ package ca.sheridancollege.project;
 public class ComputerPlayer extends Player{
 
 
+    /**
+     * main constructor for computer player
+     * @param deck makes sure is the same deck as everyone
+     * @param name computer because it never changes
+     */
     public ComputerPlayer(Deck deck){
         super("computer" , deck);
     }
 
+    /**
+     * main play method for computer player
+     */
     @Override
     public void play()  {
 

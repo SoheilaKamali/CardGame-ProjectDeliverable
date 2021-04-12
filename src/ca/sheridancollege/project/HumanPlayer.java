@@ -11,11 +11,15 @@ public class HumanPlayer extends Player {
      * A constructor that allows you to set the player's unique ID
      *
      * @param name the unique ID to assign to this player.
+     * @param deck is the same deck everyone uses
      */
     public HumanPlayer(String name, Deck deck) {
         super(name, deck);
     }
 
+    /**
+     * main play method for Human Player
+     */
     @Override
     public void play() {
         System.out.println("Player: " + getPlayerID() + "\nPoints: " + getPoints() + "\n");

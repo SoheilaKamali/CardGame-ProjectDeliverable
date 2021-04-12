@@ -25,9 +25,10 @@ public class HumanPlayer extends Player {
         System.out.println("Player: " + getPlayerID() + "\nPoints: " + getPoints() + "\n");
         System.out.println(playerHand.display());
         System.out.print("Please enter The Card you would like to request: ");
+        Card request;
         Card temp;
 
-        while(game.requestCard(playerHand.getCard(in.nextInt() - 1), this)) {
+        while(game.requestCard(request = playerHand.getCard(in.nextInt() - 1), this)) {
             System.out.println("Request Completed you have taken a card from computer request again: "
                     + playerHand.getCard(playerHand.getHandSize() - 1)+ "\n");
             delay(1000);
@@ -48,10 +49,15 @@ public class HumanPlayer extends Player {
 
 
         System.out.println("Request Failed Now you will draw a card");
-        playerHand.drawCard();
+        playerHand.addDrawnCard();
         System.out.println("You have Drawn A card: "
                 + playerHand.getCard(playerHand.getHandSize() - 1) + "\n");
-
+       
+        if (playerHand.checkRequest(request)){
+            System.out.println("You drew the same card you requested. Request Again!");
+            play();   
+        }
+        
         temp = playerHand.getCard(playerHand.getHandSize() - 1);
 
         if(playerHand.checkBook(temp)){
@@ -59,6 +65,7 @@ public class HumanPlayer extends Player {
             playerHand.extractCard(temp.rank);
             System.out.println("Points Awarded\nNew Points: " + getPoints() + " For " + getPlayerID());
             System.out.println("for card " + temp.rank.name() + "\n");
+            play();
         }
 
     }

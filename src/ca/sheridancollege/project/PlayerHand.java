@@ -57,7 +57,7 @@ public class PlayerHand{
     /**
      * draws the card and adds it the hand
      * */
-    protected void drawCard(){
+    protected void addDrawnCard(){
         cards.add(Game.getInstance().drawCard());
     }
 
@@ -112,5 +112,18 @@ public class PlayerHand{
             }
         }
         return counter == 4;
+    }
+    
+     /**
+     * this method checks the drawn card against the initially requested Card
+     * the result will determine if player goes for another round 
+     * @param card
+     * @return if the drawn card is the same as requested or not 
+     */
+    public boolean checkRequest(Card card){
+        if (cards.get(cards.size()-1).equals(card)){
+            return true;
+        }
+        return false;
     }
 }

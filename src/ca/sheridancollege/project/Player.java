@@ -51,6 +51,14 @@ public abstract class Player
     public int getPoints (){
         return playerPoints;
     }
+    
+    public void delay(int amount){
+        try {
+            Thread.sleep(amount);
+        } catch (InterruptedException ignore) {
+        }
+    }
+
 
     /**
      * The method to be instantiated when you subclass the Player class

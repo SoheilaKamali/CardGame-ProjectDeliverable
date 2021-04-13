@@ -24,18 +24,27 @@ public class HumanPlayer extends Player {
     public void play() {
         System.out.println("Player: " + getPlayerID() + "\nPoints: " + getPoints() + "\n");
         System.out.println(playerHand.display());
+        int handSize = playerHand.getHandSize();
         System.out.print("Please enter The Card you would like to request: ");
+        int reqNum = in.nextInt();
         Card request;
         Card temp;
 
-        while(game.requestCard(request = playerHand.getCard(in.nextInt() - 1), this)) {
+        while ( reqNum <= 1 || reqNum > handSize) {
+            System.out.print("Error: You must enter one of the number provided"
+                    + " above.\nPlease enter The Card you would like to request: ");
+            reqNum = in.nextInt();
+        }
+        
+        while (game.requestCard(request = playerHand.getCard(reqNum - 1), this)) {
+
             System.out.println("Request Completed you have taken a card from computer request again: "
-                    + playerHand.getCard(playerHand.getHandSize() - 1)+ "\n");
+                    + playerHand.getCard(playerHand.getHandSize() - 1) + "\n");
             delay(1000);
 
             temp = playerHand.getCard(playerHand.getHandSize() - 1);
 
-            if(playerHand.checkBook(temp)){
+            if (playerHand.checkBook(temp)) {
                 addPoint();
                 playerHand.extractCard(temp.rank);
                 System.out.println("Points Awarded\nNew Points: " + getPoints() + " For " + getPlayerID());
@@ -46,6 +55,8 @@ public class HumanPlayer extends Player {
             System.out.print("Request: ");
 
         }
+        
+        
 
 
         System.out.println("Request Failed Now you will draw a card");

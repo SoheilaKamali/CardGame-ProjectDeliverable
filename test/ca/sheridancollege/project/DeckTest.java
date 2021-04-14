@@ -56,6 +56,7 @@ public class DeckTest {
     
     /**
      * Test of getCards method, of class Deck.
+     * NEED to change the array-list in the deck class to public in order to work.
      */
     @Test
     public void testGetCards_0args() {

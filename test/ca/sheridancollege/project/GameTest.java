@@ -61,6 +61,7 @@ public class GameTest {
 
     /**
      * Test of drawCard method, of class Game.
+     * NEED to change the array-list in the deck class to public in order to work.
      */
     @Test
     public void testDrawCard() {
